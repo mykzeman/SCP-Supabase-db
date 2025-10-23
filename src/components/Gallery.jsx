@@ -1,7 +1,7 @@
 import {useState, useEffect} from "react"
 import Item from "./Item";
 import supabase from "../supabase";
-function Gallery({ isAdmin }) {
+function Gallery({ isAdmin,mode,setMode }) {
   const [scps, setScps] = useState([]); //react hook implemented where the two states being used are scps and setScps are being set to null
 
   async function fetchSCPs() {// Asynchronous function to be run in the background
@@ -18,13 +18,10 @@ function Gallery({ isAdmin }) {
     <main className="main"> {/* Main content*/}
       <div
         className="row"
-        style={{
-          display: "grid",
-          gap: "1.5rem",
-        }}
+
       >
         {scps.length > 0 ? (
-          scps.map((scp) => <Item key={scp.id} scp={scp} isAdmin={isAdmin} />)
+          scps.map((scp) => <Item key={scp.id} scp={scp} isAdmin={isAdmin} mode={mode} setMode={setMode} />)
         ) : (
           <p>Loading SCP entries...</p>
         )}
