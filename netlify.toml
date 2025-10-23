@@ -1,0 +1,9 @@
+[build]
+  # keep the project's existing build command and publish directory
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+# Prevent Netlify's secret scanner from failing the build for these expected Vite keys
+# (Supabase anon keys are public by design). Add any other keys here comma-separated.
+  SECRETS_SCAN_OMIT_KEYS = "VITE_SUPABASE_ANON_KEY,VITE_SUPABASE_URL"
